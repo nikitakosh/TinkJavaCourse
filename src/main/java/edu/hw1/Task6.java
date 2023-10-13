@@ -8,11 +8,11 @@ public class Task6 {
     private Task6() {
     }
 
-    private static final int BASE = 6174;
+    private static final int KAPREKAR_CONSTANT = 6174;
     private static final int DECIMAL_BASE = 10;
 
     public static int countK(int n) {
-        if (n == BASE) {
+        if (n == KAPREKAR_CONSTANT) {
             return 0;
         }
         List<Integer> digits = new ArrayList<>();
