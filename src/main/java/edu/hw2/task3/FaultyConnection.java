@@ -1,13 +1,24 @@
 package edu.hw2.task3;
 
-public class FaultyConnection implements Connection{
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import java.util.Random;
+
+public class FaultyConnection implements Connection {
+    private final static Logger LOGGER = LogManager.getLogger();
     @Override
     public void execute(String command) throws ConnectionException {
-        throw  new ConnectionException("fault connection");
+        Random random = new Random();
+        boolean isConnected = random.nextBoolean();
+        if (isConnected) {
+            LOGGER.info("execute command: " + command);
+        } else {
+            throw new ConnectionException("fault connection");
+        }
     }
 
     @Override
-    public void close() throws Exception  {
-        System.out.println("FaultyConnection closed");
+    public void close() {
+        LOGGER.info("FaultyConnection closed");
     }
 }

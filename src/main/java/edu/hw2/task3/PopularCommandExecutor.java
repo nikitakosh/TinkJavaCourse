@@ -9,20 +9,27 @@ public final class PopularCommandExecutor {
         this.maxAttempts = maxAttempts;
     }
 
-    void updatePackages(){
+    public void updatePackages(){
         tryExecute("apt update && apt upgrade -y")  ;
     }
     private void tryExecute(String command){
-
+        Connection connection = manager.getConnection();
         for(int i = 0; i < maxAttempts; i++){
-                try (Connection connection = manager.getConnection();){
-                    connection.execute(command);
-                    return;
-                } catch (ConnectionException e) {
-                    if (i == maxAttempts-1){
-                        throw new ConnectionException("number of attempts exceeded");
-                    }
+            try {
+                connection.execute(command);
+                break;
+            } catch (ConnectionException e){
+                if (i == maxAttempts-1) {
+                    throw e;
                 }
+            }
         }
+        try {
+            connection.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
+
 }
