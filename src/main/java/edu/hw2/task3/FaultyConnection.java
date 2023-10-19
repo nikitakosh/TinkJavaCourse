@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class FaultyConnection implements Connection {
     private final static Logger LOGGER = LogManager.getLogger();
+
     @Override
     public void execute(String command) throws ConnectionException {
         Random random = new Random();

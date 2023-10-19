@@ -10,7 +10,7 @@ public class Task4Test {
 
 
     @Test
-    @DisplayName("test input invalid depth")
+    @DisplayName("test input valid depth")
     public void callingInfoInputValidDepthTest(){
         Assertions.assertEquals(CallingInfoUtils.callingInfo(), new CallingInfo("edu.hw2.Task4Test", "callingInfoInputValidDepthTest"));
     }
