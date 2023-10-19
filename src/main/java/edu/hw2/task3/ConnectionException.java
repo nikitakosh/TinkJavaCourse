@@ -5,4 +5,7 @@ public class ConnectionException extends RuntimeException{
     public ConnectionException(String cause) {
         super(cause);
     }
+
+    public ConnectionException() {
+    }
 }
