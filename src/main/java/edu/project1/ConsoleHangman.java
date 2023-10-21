@@ -1,18 +1,24 @@
-package edu.hw2.project1_;
+package edu.project1;
 
-import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ConsoleHangman {
-    public void run() {
+    private static final Logger LOGGER = LogManager.getLogger();
+
+    public void run(Dictionary dictionary) {
         boolean isFinishGame = false;
-        while (!isFinishGame){
-            Session session = getSession();
+        while (!isFinishGame) {
+            Session session = getSession(dictionary);
             boolean isFinishSession = false;
             while (!isFinishSession) {
                 char letter = InputHandler.inputLetter();
+                if (letter == '!') {
+                    break;
+                }
                 GuessResult guessResult = tryGuess(session, letter);
                 printState(guessResult);
-                if (guessResult.message().equals("You won!") || guessResult.message().equals("You lost!")){
+                if (guessResult.message().equals("You won!") || guessResult.message().equals("You lost!")) {
                     isFinishSession = true;
                 }
             }
@@ -26,13 +32,12 @@ public class ConsoleHangman {
     }
 
     private void printState(GuessResult guess) {
-        System.out.println(guess.message());
+        LOGGER.info(guess.message());
     }
 
-    private Session getSession(){
+    private Session getSession(Dictionary dictionary) {
+        String answer = InputHandler.inputWord(dictionary);
         int maxAttempts = InputHandler.inputPlayerAttempts();
-        Dictionary dictionary = new MyDictionary(List.of("hello", "circle", "world"));
-        String answer = dictionary.randomWord();
         char[] userAnswer = "*".repeat(answer.length()).toCharArray();
         return new Session(answer, userAnswer, maxAttempts);
     }
