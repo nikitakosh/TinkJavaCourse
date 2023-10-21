@@ -1,16 +1,17 @@
-package edu.hw2.project1_;
+package edu.project1;
 
-import org.jetbrains.annotations.NotNull;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Random;
+import org.jetbrains.annotations.NotNull;
 
-public class MyDictionary implements Dictionary {
+public class HangmanDictionary implements Dictionary {
     private final List<String> words;
 
-    public MyDictionary(List<String> words) {
+    public HangmanDictionary(List<String> words) {
         this.words = words;
     }
+
     @Override
     public @NotNull String randomWord() {
         Random random = new Random();

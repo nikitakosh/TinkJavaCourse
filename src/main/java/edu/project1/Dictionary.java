@@ -1,4 +1,4 @@
-package edu.hw2.project1_;
+package edu.project1;
 
 import org.jetbrains.annotations.NotNull;
 
