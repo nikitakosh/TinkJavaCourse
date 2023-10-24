@@ -24,8 +24,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <maven.version>3.8.8</maven.version>
-        <jdk.version>20</jdk.version>
-        <java.release>20</java.release>
+        <jdk.version>20.0.1</jdk.version>
+        <java.release>20.0.1</java.release>
 
         <revision>1.0.0</revision>
 
