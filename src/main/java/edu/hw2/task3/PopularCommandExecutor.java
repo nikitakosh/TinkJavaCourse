@@ -14,22 +14,21 @@ public final class PopularCommandExecutor {
     }
 
     private void tryExecute(String command) {
-        Connection connection = manager.getConnection();
-        for (int i = 0; i < maxAttempts; i++) {
-            try {
-                connection.execute(command);
-                break;
-            } catch (ConnectionException e) {
-                if (i == maxAttempts - 1) {
-                    throw e;
+        try (Connection connection = manager.getConnection()) {
+            for (int i = 0; i < maxAttempts; i++) {
+                try {
+                    connection.execute(command);
+                    break;
+                } catch (ConnectionException e) {
+                    if (i == maxAttempts - 1) {
+                        throw e;
+                    }
                 }
             }
-        }
-        try {
-            connection.close();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new ConnectionException("connection not received");
         }
+
 
     }
 
