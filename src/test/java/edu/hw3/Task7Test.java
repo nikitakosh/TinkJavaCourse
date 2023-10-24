@@ -10,7 +10,7 @@ public class Task7Test {
 
     @Test
     @DisplayName("add null to TreeMap")
-    public void addNullToTreeMap(){
+    public void addNullToTreeMap() {
         TreeMap<String, String> treeMap = Task7.addNullToTreeMap();
         Assertions.assertTrue(treeMap.containsKey(null));
     }

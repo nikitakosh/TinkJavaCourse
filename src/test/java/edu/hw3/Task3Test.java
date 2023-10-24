@@ -9,26 +9,18 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 public class Task3Test {
 
-    @Test
-    @DisplayName("input null test")
-    public void inputNullTest(){
-        Assertions.assertThrows(NullPointerException.class, () -> Task3.freqDict(null));
-    }
-
-
-    public static Stream<Arguments> provideObjects(){
-        String[] strings = new String[] {"hello", "hello", "java", "c", "c"};
+    public static Stream<Arguments> provideObjects() {
+        String[] strings = new String[]{"hello", "hello", "java", "c", "c"};
         Map<String, Integer> mapStrings = new HashMap<>();
         mapStrings.put("hello", 2);
         mapStrings.put("java", 1);
         mapStrings.put("c", 2);
 
-        Integer[] integers = new Integer[] {1, 1, 2, 2, 2, 3};
+        Integer[] integers = new Integer[]{1, 1, 2, 2, 2, 3};
         Map<Integer, Integer> mapIntegers = new HashMap<>();
         mapIntegers.put(1, 2);
         mapIntegers.put(2, 3);
@@ -38,6 +30,12 @@ public class Task3Test {
                 Arguments.of(strings, mapStrings),
                 Arguments.of(integers, mapIntegers)
         );
+    }
+
+    @Test
+    @DisplayName("input null test")
+    public void inputNullTest() {
+        Assertions.assertThrows(NullPointerException.class, () -> Task3.freqDict(null));
     }
 
     @ParameterizedTest

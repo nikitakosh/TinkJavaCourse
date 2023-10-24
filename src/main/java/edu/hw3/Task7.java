@@ -4,6 +4,9 @@ import java.util.TreeMap;
 
 public class Task7 {
 
+    private Task7() {
+    }
+
     public static TreeMap<String, String> addNullToTreeMap() {
         TreeMap<String, String> treeMap = new TreeMap<>((s1, s2) -> {
             if (s1 == null && s2 == null) {
