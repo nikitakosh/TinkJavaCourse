@@ -22,10 +22,18 @@ public record Animal(
     }
 
     enum Type {
-        CAT, DOG, BIRD, FISH, SPIDER
+        CAT(1), DOG(2), BIRD(3), FISH(4), SPIDER(5);
+
+        Type(int priority) {
+
+        }
     }
 
     enum Sex {
-        M, F
+        M(1), F(2);
+
+        Sex(int priority) {
+
+        }
     }
 }
