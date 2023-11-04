@@ -27,7 +27,8 @@ public class EllerMazeGenerator implements Generator {
             preparingNewLine(i);
         }
         addingEndLine();
-        return MazeGraphGenerator.generateGraph(height, width, bottomWalls, rightWalls);
+        Cell[][] graph = MazeGraphGenerator.generateGraph(height, width, bottomWalls, rightWalls);
+        return new Maze(height, width, graph, rightWalls, bottomWalls);
     }
 
     private void initializeRightWallsAndBottomWalls(int height, int width) {
@@ -45,13 +46,13 @@ public class EllerMazeGenerator implements Generator {
         }
     }
 
-    public void fillEmptyValue() {
+    private void fillEmptyValue() {
         for (int i = 0; i < width; i++) {
             sideLine.add(0);
         }
     }
 
-    public void assignUniqueSet() {
+    private void assignUniqueSet() {
         for (int i = 0; i < width; i++) {
             if (sideLine.get(i) == 0) {
                 sideLine.set(i, counter);
@@ -60,7 +61,7 @@ public class EllerMazeGenerator implements Generator {
         }
     }
 
-    public void addingVerticalWalls(int row) {
+    private void addingVerticalWalls(int row) {
         for (int i = 0; i < width - 1; i++) {
             boolean choice = new Random().nextBoolean();
             if (choice || Objects.equals(sideLine.get(i), sideLine.get(i + 1))) {
@@ -81,7 +82,7 @@ public class EllerMazeGenerator implements Generator {
         }
     }
 
-    public void addingHorizontalWalls(int row) {
+    private void addingHorizontalWalls(int row) {
         for (int i = 0; i < width; i++) {
             boolean choice = new Random().nextBoolean();
             if (calculateUniqueSet(sideLine.get(i)) != 1 && choice) {
@@ -100,7 +101,7 @@ public class EllerMazeGenerator implements Generator {
         return countUniqSet;
     }
 
-    public void checkedHorizontalWalls(int row) {
+    private void checkedHorizontalWalls(int row) {
         for (int i = 0; i < width; i++) {
             if (calculateHorizontalWalls(sideLine.get(i), row) == 0) {
                 bottomWalls.get(row).set(i, false);
@@ -118,7 +119,7 @@ public class EllerMazeGenerator implements Generator {
         return countHorizontalWalls;
     }
 
-    public void preparingNewLine(int row) {
+    private void preparingNewLine(int row) {
         for (int i = 0; i < width; i++) {
             if (bottomWalls.get(row).get(i)) {
                 sideLine.set(i, 0);
@@ -126,7 +127,7 @@ public class EllerMazeGenerator implements Generator {
         }
     }
 
-    public void addingEndLine() {
+    private void addingEndLine() {
         assignUniqueSet();
         addingVerticalWalls(height - 1);
         checkedEndLine();
