@@ -30,7 +30,8 @@ public class BinaryTreeMazeGenerator implements Generator {
                 }
             }
         }
-        return MazeGraphGenerator.generateGraph(height, width, bottomWalls, rightWalls);
+        Cell[][] graph = MazeGraphGenerator.generateGraph(height, width, bottomWalls, rightWalls);
+        return new Maze(height, width, graph, rightWalls, bottomWalls);
     }
 
     private void initializeRightWallsAndBottomWalls(int height, int width) {

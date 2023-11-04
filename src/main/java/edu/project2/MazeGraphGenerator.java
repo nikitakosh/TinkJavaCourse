@@ -1,16 +1,17 @@
 package edu.project2;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
+
 public class MazeGraphGenerator {
 
     private MazeGraphGenerator() {}
 
     @NotNull
-    static Maze generateGraph(int height, int width, List<List<Boolean>> bottomWalls, List<List<Boolean>> rightWalls) {
-        Cell[][] maze = new Cell[height][width];
+    public static Cell[][] generateGraph(int height, int width,
+                                         List<List<Boolean>> bottomWalls, List<List<Boolean>> rightWalls) {
+        Cell[][] graph = new Cell[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 List<Cell.Direction> directions = new ArrayList<>();
@@ -26,9 +27,9 @@ public class MazeGraphGenerator {
                 if (!rightWalls.get(i).get(j)) {
                     directions.add(Cell.Direction.RIGHT);
                 }
-                maze[i][j] = new Cell(i, j, directions);
+                graph[i][j] = new Cell(i, j, directions);
             }
         }
-        return new Maze(height, width, maze, rightWalls, bottomWalls);
+        return graph;
     }
 }
