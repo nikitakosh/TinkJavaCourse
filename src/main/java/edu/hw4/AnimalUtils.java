@@ -39,12 +39,12 @@ public class AnimalUtils {
 
     public static Map<Animal.Type, Animal> getHardestAnimalOfEachType(List<Animal> animals) {
         return animals.stream()
-            .collect(Collectors.toMap(
-                    Animal::type,
-                    animal -> animal,
-                    (hardestAnimal, curAnimal) ->
-                            hardestAnimal.weight() > curAnimal.weight() ? hardestAnimal : curAnimal)
-            );
+                .collect(Collectors.toMap(
+                        Animal::type,
+                        animal -> animal,
+                        (hardestAnimal, curAnimal) ->
+                                hardestAnimal.weight() > curAnimal.weight() ? hardestAnimal : curAnimal)
+                );
     }
 
     public static Animal getKOldestAnimal(List<Animal> animals, int k) {
@@ -151,7 +151,7 @@ public class AnimalUtils {
         return validationErrors.stream()
                 .filter(validationError -> validationError.isValid(animal))
                 .map(ValidationError::getValidationField)
-                .collect(Collectors.joining( " "));
+                .collect(Collectors.joining(" "));
     }
 
     public static Map<String, Set<ValidationError>> validateAnimals(List<Animal> animals) {
