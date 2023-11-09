@@ -23,13 +23,13 @@ public class ValidateAnimalsShowInvalidFieldTest {
                 validAnimal,
                 animalInvalidBites
         ));
-        Map<String, Set<String>> validationErrorMap = new HashMap<>(
+        Map<String, String> validationErrorMap = new HashMap<>(
                 Map.of(
-                        animalInvalidName.name(), Set.of("Name"),
-                        animalInvalidAge.name(), Set.of("Age"),
-                        animalInvalidHeightAndWeight.name(), Set.of("Height", "Weight"),
-                        validAnimal.name(), Set.of(),
-                        animalInvalidBites.name(), Set.of("Bites")
+                        animalInvalidName.name(), "Name",
+                        animalInvalidAge.name(), "Age",
+                        animalInvalidHeightAndWeight.name(), "Height Weight",
+                        validAnimal.name(), "",
+                        animalInvalidBites.name(), "Bites"
                 ));
         Assertions.assertEquals(AnimalUtils.validateAnimalsShowInvalidField(animals), validationErrorMap);
     }

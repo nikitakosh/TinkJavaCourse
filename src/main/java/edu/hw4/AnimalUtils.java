@@ -140,7 +140,7 @@ public class AnimalUtils {
                 .collect(Collectors.toSet());
     }
 
-    private static Set<String> validateAnimalShowInvalidField(Animal animal) {
+    private static String validateAnimalShowInvalidField(Animal animal) {
         List<ValidationError> validationErrors = new ArrayList<>(List.of(
                 new ValidateAge(),
                 new ValidateBites(),
@@ -151,7 +151,7 @@ public class AnimalUtils {
         return validationErrors.stream()
                 .filter(validationError -> validationError.isValid(animal))
                 .map(ValidationError::getValidationField)
-                .collect(Collectors.toSet());
+                .collect(Collectors.joining( " "));
     }
 
     public static Map<String, Set<ValidationError>> validateAnimals(List<Animal> animals) {
@@ -162,11 +162,7 @@ public class AnimalUtils {
                 ));
     }
 
-    public static Map<String, Set<String>> validateAnimalsShowInvalidField(List<Animal> animals) {
-        // тут я немного не понял задание: написано вернуть имя и название невалидных полей,
-        // но в задании просят вернуть Map<String, String>
-        // решил, что это ошибка формулировки и возвращаю Map<String, Set<String>>.
-        // Если я не прав, разъясните формулировку, пожалуйста
+    public static Map<String, String> validateAnimalsShowInvalidField(List<Animal> animals) {
         return animals.stream()
                 .collect(Collectors.toMap(
                         Animal::name,
