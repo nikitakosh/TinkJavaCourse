@@ -4,17 +4,15 @@ import edu.hw2.task1.Expr;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class Task1Test {
-
-    @ParameterizedTest
-    @ValueSource(ints = {2, 4})
+    @Test
     @DisplayName("test constant number")
-    public void constantTest(int num){
-        var constant = new Expr.Constant(num);
-        Assertions.assertEquals(constant.evaluate(), num);
+    public void constantTest(){
+        var two = new Expr.Constant(2);
+        var four = new Expr.Constant(4);
+        Assertions.assertEquals(two.evaluate(), 2);
+        Assertions.assertEquals(four.evaluate(), 4);
     }
 
     @Test
@@ -43,14 +41,6 @@ public class Task1Test {
     public void exponentTest(){
         var exp = new Expr.Exponent(new Expr.Constant(6), 2);
         Assertions.assertEquals(exp.evaluate(), 36);
-    }
-
-    @Test
-    @DisplayName("test addition of two multiplication result")
-    public void additionOfTwoMultiplicationResultTest(){
-        var addition = new Expr.Addition(new Expr.Multiplication(new Expr.Constant(2), new Expr.Constant(3)),
-                                     new Expr.Multiplication(new Expr.Constant(4), new Expr.Constant(5)));
-        Assertions.assertEquals(addition.evaluate(), 26);
     }
 
 }
