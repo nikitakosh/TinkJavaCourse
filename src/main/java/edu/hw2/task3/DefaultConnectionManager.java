@@ -7,9 +7,10 @@ public class DefaultConnectionManager implements ConnectionManager {
     public Connection getConnection() {
         Random random = new Random();
         boolean isConnected = random.nextBoolean();
-        if (isConnected) {
+        if (isConnected){
             return new StableConnection();
-        } else {
+        }
+        else{
             return new FaultyConnection();
         }
     }
