@@ -2,6 +2,7 @@ package edu.hw5;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -24,5 +25,14 @@ public class Task2Test {
     @DisplayName("find fridays 13")
     public void findFridays13(String year, List<LocalDate> fridays13) {
         Assertions.assertEquals(Task2.findFridays13(year), fridays13);
+    }
+
+    @Test
+    @DisplayName("find friday 13")
+    public void findFriday13() {
+        LocalDate date = LocalDate.of(1925, 1, 10);
+        Assertions.assertEquals(Task2.findFriday13(date), LocalDate.of(1925, 2, 13));
+        date = LocalDate.of(2024, 8, 27);
+        Assertions.assertEquals(Task2.findFriday13(date), LocalDate.of(2024, 9, 13));
     }
 }

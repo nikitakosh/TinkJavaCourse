@@ -9,7 +9,10 @@ import java.util.List;
 
 public class Task2 {
 
-    private Task2() {}
+    public static final int DAY_OF_MONTH_13 = 13;
+
+    private Task2() {
+    }
 
     public static final String DD_MM_YYYY = "dd.MM.yyyy";
     public static final String START_DATE = "13.01.";
@@ -31,5 +34,18 @@ public class Task2 {
             fridays13.add(localDate);
         }
         return fridays13;
+    }
+
+    public static LocalDate findFriday13(LocalDate date) {
+        LocalDate currDate = date;
+        if (currDate.getDayOfMonth() > DAY_OF_MONTH_13) {
+            currDate = currDate.with(TemporalAdjusters.lastDayOfMonth()).plusDays(DAY_OF_MONTH_13);
+        } else {
+            currDate = currDate.plusDays(DAY_OF_MONTH_13 - currDate.getDayOfMonth());
+        }
+        while (currDate.getDayOfWeek() != DayOfWeek.FRIDAY) {
+            currDate = currDate.plusMonths(1);
+        }
+        return currDate;
     }
 }
