@@ -17,7 +17,10 @@ public class Task7Test {
                 Arguments.of("010", true),
                 Arguments.of("01", false),
                 Arguments.of("001", false),
-                Arguments.of("001010", true)
+                Arguments.of("001010", false),
+                Arguments.of("0110 ", false),
+                Arguments.of("0101  ", true)
+
         );
     }
 

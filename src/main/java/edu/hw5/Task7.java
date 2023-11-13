@@ -8,15 +8,15 @@ public class Task7 {
     private Task7() {}
 
     public static boolean regex1(String str) {
-        Pattern pattern = Pattern.compile("^[01]{2,}0$");
+        Pattern pattern = Pattern.compile("^[01]{2}0[01]*");
         Matcher matcher = pattern.matcher(str);
         return matcher.find();
     }
 
     public static boolean regex2(String str) {
-        Pattern pattern = Pattern.compile("^([01])[01]*([01])$");
+        Pattern pattern = Pattern.compile("^([01])[01]*\\1$");
         Matcher matcher = pattern.matcher(str);
-        return matcher.find() && matcher.group(1).equals(matcher.group(2));
+        return matcher.find();
     }
 
     public static boolean regex3(String str) {

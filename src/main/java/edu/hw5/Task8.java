@@ -27,7 +27,7 @@ public class Task8 {
     }
 
     public static boolean regex4(String str) {
-        Pattern pattern = Pattern.compile("^(?!(11|111)$).*");
+        Pattern pattern = Pattern.compile("^(?!11$|111$)[01]*$");
         Matcher matcher = pattern.matcher(str);
         return matcher.find();
     }
