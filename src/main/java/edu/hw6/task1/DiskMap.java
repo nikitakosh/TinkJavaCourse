@@ -20,12 +20,14 @@ import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+
+
 public class DiskMap implements Map<String, String> {
     private static final String START_FILE_NAME = "data";
     private static final String FILE_EXTENSION = ".txt";
     private static final int BUFFER_CAPACITY = 1024;
     private static final String ABSOLUTE_PATH =
-            "C:\\Users\\nikita\\IdeaProjects\\project-template\\src\\main\\java\\edu\\hw6\\task1";
+            "src/main/java/edu/hw6/task1";
     private Path path;
     private int size;
 

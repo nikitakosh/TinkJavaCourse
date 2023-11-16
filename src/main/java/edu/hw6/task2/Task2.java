@@ -7,17 +7,17 @@ import java.nio.file.Paths;
 
 public class Task2 {
 
-    public static final String REGEX_DELIMETER = "\\.";
+    public static final String REGEX_DELIMITER = "\\.";
 
     private Task2() {}
 
     public static void cloneFile(Path path) {
         Path currPath = path;
         int count = 0;
-        String baseName =  currPath.getFileName().toString().split(REGEX_DELIMETER)[0];
+        String baseName =  currPath.getFileName().toString().split(REGEX_DELIMITER)[0];
         String extension = "";
-        if (currPath.getFileName().toString().split(REGEX_DELIMETER).length > 1) {
-            extension = "." + currPath.getFileName().toString().split(REGEX_DELIMETER)[1];
+        if (currPath.getFileName().toString().split(REGEX_DELIMITER).length > 1) {
+            extension = "." + currPath.getFileName().toString().split(REGEX_DELIMITER)[1];
         }
         while (Files.exists(currPath)) {
             if (count == 0) {

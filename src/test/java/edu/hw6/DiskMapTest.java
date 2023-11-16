@@ -23,6 +23,7 @@ public class DiskMapTest {
         diskMap.put("key2", "val2");
         Assertions.assertEquals(diskMap.get("key2"), "val2");
         Assertions.assertThrows(DuplicateKeyException.class, () -> diskMap.put("key1", "val3"));
+        diskMap.clear();
     }
 
     @Test
@@ -34,6 +35,7 @@ public class DiskMapTest {
         Assertions.assertEquals(diskMap.remove("key1"), "val1");
         Assertions.assertNull(diskMap.get("key1"));
         Assertions.assertThrows(RemoveNonexistentKeyException.class, () -> diskMap.remove("key1"));
+        diskMap .clear();
     }
 
     @Test
@@ -46,6 +48,8 @@ public class DiskMapTest {
         diskMap2.putAll(diskMap1);
         Assertions.assertEquals(diskMap2.get("key1"), "val1");
         Assertions.assertEquals(diskMap2.get("key2"), "val2");
+        diskMap1.clear();
+        diskMap2.clear();
     }
 
     @Test
@@ -55,6 +59,7 @@ public class DiskMapTest {
         diskMap.put("key1", "val1");
         diskMap.put("key2", "val2");
         Assertions.assertEquals(diskMap.entrySet(), Set.of(Map.entry("key1", "val1"), Map.entry("key2", "val2")));
+        diskMap.clear();
     }
 
     @Test
@@ -64,6 +69,7 @@ public class DiskMapTest {
         diskMap.put("key1", "val1");
         diskMap.put("key2", "val2");
         Assertions.assertEquals(diskMap.keySet(), Set.of("key1", "key2"));
+        diskMap.clear();
     }
 
     @Test
@@ -73,6 +79,7 @@ public class DiskMapTest {
         diskMap.put("key1", "val1");
         diskMap.put("key2", "val2");
         Assertions.assertEquals(diskMap.values(), List.of("val1", "val2"));
+        diskMap.clear();
     }
 
     @Test
@@ -94,6 +101,7 @@ public class DiskMapTest {
         diskMap.put("key2", "val2");
         Assertions.assertTrue(diskMap.containsKey("key2"));
         Assertions.assertFalse(diskMap.containsKey("key3"));
+        diskMap.clear();
     }
 
     @Test
@@ -104,6 +112,7 @@ public class DiskMapTest {
         diskMap.put("key2", "val2");
         Assertions.assertTrue(diskMap.containsValue("val1"));
         Assertions.assertFalse(diskMap.containsValue("val3"));
+        diskMap.clear();
     }
 
     @Test
@@ -115,6 +124,7 @@ public class DiskMapTest {
         Assertions.assertFalse(diskMap.isEmpty());
         diskMap.remove("key1");
         Assertions.assertTrue(diskMap.isEmpty());
+        diskMap.clear();
     }
     @Test
     @DisplayName("DiskMap size")
@@ -125,5 +135,6 @@ public class DiskMapTest {
         Assertions.assertEquals(diskMap.size(), 1);
         diskMap.remove("key1");
         Assertions.assertEquals(diskMap.size(), 0)  ;
+        diskMap.clear();
     }
 }
