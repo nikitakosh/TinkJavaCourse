@@ -27,7 +27,7 @@ public class LogReportAdocTest {
                 | Начальная дата       | 2023.03.05
                 | Конечная дата        | 2023.03.05
                 | Количество запросов  | 2
-                | Средний размер ответа| 20,1
+                | Средний размер ответа| 20.1
                 |===
                 """;
         LogReportAdoc logReportAdoc = new LogReportAdoc();

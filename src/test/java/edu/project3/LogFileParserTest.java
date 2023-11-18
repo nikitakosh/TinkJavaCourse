@@ -16,12 +16,12 @@ public class LogFileParserTest {
     @DisplayName("parse log files")
     public void parseLogFiles() {
         LogFileParser logFileParser = new LogFileParser("logs*");
-        Assertions.assertEquals(logFileParser.parseLogFiles(), List.of(
-                Path.of("src/main/resources/project3/logs/2021/2021-08-31.log"),
-                Path.of("src/main/resources/project3/logs/2022/2022-08-31.log"),
-                Path.of("src/main/resources/project3/logs/2023/2023-08-31.txt"),
-                Path.of("src/main/resources/project3/logs/2024/2024-08-31.txt")
-        ));
+        List<Path> paths = logFileParser.parseLogFiles();
+        Assertions.assertEquals(4, paths.size());
+        Assertions.assertTrue(paths.contains(Path.of("src/main/resources/project3/logs/2021/2021-08-31.log")));
+        Assertions.assertTrue(paths.contains(Path.of("src/main/resources/project3/logs/2022/2022-08-31.log")));
+        Assertions.assertTrue(paths.contains(Path.of("src/main/resources/project3/logs/2023/2023-08-31.txt")));
+        Assertions.assertTrue(paths.contains(Path.of("src/main/resources/project3/logs/2024/2024-08-31.txt")));
         logFileParser = new LogFileParser("logs/**/2023-08-31.txt");
         Assertions.assertEquals(logFileParser.parseLogFiles(), List.of(
                 Path.of("src/main/resources/project3/logs/2023/2023-08-31.txt")

@@ -2,6 +2,8 @@ package edu.project3.reports;
 
 import edu.project3.parsers.StatusCodeParser;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.Map;
 
 public class LogReportMarkdown implements LogReport {
@@ -19,7 +21,7 @@ public class LogReportMarkdown implements LogReport {
                 + String.format("|     Конечная дата     | %s |\n", generalInfo.get("to"))
                 + String.format("|  Количество запросов  | %s |\n", generalInfo.get("countLogs"))
                 + String.format("| Средний размер ответа | %s |\n",
-                new DecimalFormat("#.##").format(Double.parseDouble(generalInfo.get("avgResponseSize"))));
+                new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US)).format(Double.parseDouble(generalInfo.get("avgResponseSize"))));
     }
 
     @Override
