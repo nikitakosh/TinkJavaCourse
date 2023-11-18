@@ -21,7 +21,8 @@ public class LogReportMarkdown implements LogReport {
                 + String.format("|     Конечная дата     | %s |\n", generalInfo.get("to"))
                 + String.format("|  Количество запросов  | %s |\n", generalInfo.get("countLogs"))
                 + String.format("| Средний размер ответа | %s |\n",
-                new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US)).format(Double.parseDouble(generalInfo.get("avgResponseSize"))));
+                new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US))
+                        .format(Double.parseDouble(generalInfo.get("avgResponseSize"))));
     }
 
     @Override

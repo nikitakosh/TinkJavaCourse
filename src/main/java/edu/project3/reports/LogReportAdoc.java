@@ -21,7 +21,8 @@ public class LogReportAdoc implements LogReport {
                 + "| Конечная дата        | " + generalInfo.get("to") + "\n"
                 + "| Количество запросов  | " + generalInfo.get("countLogs") + "\n"
                 + "| Средний размер ответа| "
-                + new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US)).format(Double.parseDouble(generalInfo.get("avgResponseSize"))) + "\n"
+                + new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US))
+                .format(Double.parseDouble(generalInfo.get("avgResponseSize"))) + "\n"
                 + HORIZONTAL_LINE;
     }
 
