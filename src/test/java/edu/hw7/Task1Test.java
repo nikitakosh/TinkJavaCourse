@@ -25,7 +25,7 @@ public class Task1Test {
     @ParameterizedTest
     @MethodSource("provideNumbers")
     @DisplayName("increase number")
-    public void increaseNumber(int increaseValue) {
-        Assertions.assertEquals(Task1.increaseNumber(increaseValue), increaseValue);
+    public void increaseNumberBy4000(int startValue) {
+        Assertions.assertEquals(Task1.increaseNumberBy4000(startValue), startValue+4000);
     }
 }

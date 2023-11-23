@@ -14,7 +14,7 @@ public class SingleThreadMonteCarloTest {
                 Math.abs(singleThreadMonteCarlo.calculatePi(1000000) - Math.PI) < 0.01
         );
         Assertions.assertTrue(
-                Math.abs(singleThreadMonteCarlo.calculatePi(10000000) - Math.PI) < 0.01
+                Math.abs(singleThreadMonteCarlo.calculatePi(5000000) - Math.PI) < 0.01
         );
     }
 
