@@ -1,0 +1,2 @@
+70.168.108.194 - - [04/Jun/2015:04:06:00 +0000] "GET /downloads/product_2 HTTP/1.1" 200 951 "-" "urlgrabber/3.9.1 yum/3.2.29"
+67.132.206.254 - - [04/Jun/2015:04:06:23 +0000] "GET /downloads/product_1 HTTP/1.1" 200 2592 "-" "urlgrabber/3.1.0 yum/3.2.22"
