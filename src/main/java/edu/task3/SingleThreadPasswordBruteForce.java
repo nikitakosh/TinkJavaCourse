@@ -8,8 +8,9 @@ import java.util.Map;
 public class SingleThreadPasswordBruteForce {
     private final String alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
     Map<String, String> database = new HashMap<>(Map.of(
-            "a256e6b336afdc38c564789c399b516c", "a.v.petrov",
-            "0f98df87c7440c045496f705c7295344", "v.v.belov"
+            "e3e84538a1b02b1cc11bf71fe3169958", "a.v.petrov",
+            "537daa262cc758ee7ede412f3d73b2d8", "v.v.belv",
+            "15bda1664d8a3e8e78f8a054254728ce", "v.v.bel"
     ));
 
     public String getHashMD5(String password) {

@@ -16,8 +16,9 @@ public class SingleThreadPasswordBruteForceTest {
         SingleThreadPasswordBruteForce singleThreadPasswordBruteForce = new SingleThreadPasswordBruteForce();
         Assertions.assertEquals(singleThreadPasswordBruteForce.singleThreadBruteForce(),
                 Map.of(
-                        "a.v.petrov", "cde",
-                        "v.v.belov", "fgh"
+                        "a.v.petrov", "ert",
+                        "v.v.belv", "grt",
+                        "v.v.bel", "ght"
                 ));
         long finish = System.nanoTime();
         System.out.println((finish - start) / Math.pow(10, 9));
