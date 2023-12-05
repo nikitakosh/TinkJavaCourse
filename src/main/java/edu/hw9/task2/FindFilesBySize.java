@@ -22,7 +22,7 @@ public class FindFilesBySize extends RecursiveTask<List<Path>> {
     @Override
     protected List<Path> compute() {
         if (path.toFile().isFile()) {
-            return path.toFile().length() > size ? List.of(path) : List.of();
+            return path.toFile().length() > size ? new ArrayList<>(List.of(path)) : new ArrayList<>();
         }
         List<FindFilesBySize> findFilesBySizeRecursiveTasks = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(path)) {
@@ -31,6 +31,7 @@ public class FindFilesBySize extends RecursiveTask<List<Path>> {
             throw new RuntimeException(e);
         }
         findFilesBySizeRecursiveTasks.forEach(ForkJoinTask::fork);
-        return findFilesBySizeRecursiveTasks.stream().map(ForkJoinTask::join).flatMap(Collection::stream).toList();
+        return new ArrayList<>(findFilesBySizeRecursiveTasks.stream()
+                .map(ForkJoinTask::join).flatMap(Collection::stream).toList());
     }
 }

@@ -25,7 +25,7 @@ public class FindFilesWithExtension extends RecursiveTask<List<Path>> {
     protected List<Path> compute() {
         if (path.toFile().isFile()) {
             PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:" + "*." + fileExtension);
-            return pathMatcher.matches(path.getFileName()) ? List.of(path) : List.of();
+            return pathMatcher.matches(path.getFileName()) ? new ArrayList<>(List.of(path)) : new ArrayList<>();
         }
         List<FindFilesWithExtension> fileRecursiveTasks = new ArrayList<>();
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(path)) {
@@ -34,7 +34,8 @@ public class FindFilesWithExtension extends RecursiveTask<List<Path>> {
             throw new RuntimeException(e);
         }
         fileRecursiveTasks.forEach(ForkJoinTask::fork);
-        return fileRecursiveTasks.stream().map(ForkJoinTask::join).flatMap(Collection::stream).toList();
+        return new ArrayList<>(fileRecursiveTasks.stream()
+                .map(ForkJoinTask::join).flatMap(Collection::stream).toList());
     }
 
 }

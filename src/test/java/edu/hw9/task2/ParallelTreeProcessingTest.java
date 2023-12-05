@@ -20,7 +20,9 @@ public class ParallelTreeProcessingTest {
     @Test
     @DisplayName("find directory with more than countFiles")
     public void findDirectory() {
-        Assertions.assertEquals(parallelTreeProcessing.findDirectory(3),
+        List<Path> directories = parallelTreeProcessing.findDirectory(3);
+        directories.sort(Path::compareTo);
+        Assertions.assertEquals(directories,
                 List.of(
                         Path.of("src/main/resources/hw9Task2"),
                         Path.of("src/main/resources/hw9Task2/dir1"),
@@ -35,7 +37,9 @@ public class ParallelTreeProcessingTest {
     @Test
     @DisplayName("find files with extension")
     public void findFilesWithExtension() {
-        Assertions.assertEquals(parallelTreeProcessing.findFilesWithExtension("txt"),
+        List<Path> files = parallelTreeProcessing.findFilesWithExtension("txt");
+        files.sort(Path::compareTo);
+        Assertions.assertEquals(files,
                 List.of(
                         Path.of("src/main/resources/hw9Task2/dir1/file4.txt"),
                         Path.of("src/main/resources/hw9Task2/dir2/file2.txt"),
@@ -54,7 +58,9 @@ public class ParallelTreeProcessingTest {
     @Test
     @DisplayName("find files by size")
     public void findFilesBySize() {
-        Assertions.assertEquals(parallelTreeProcessing.findFilesBySize(200000),
+        List<Path> files = parallelTreeProcessing.findFilesBySize(200000);
+        files.sort(Path::compareTo);
+        Assertions.assertEquals(files,
                 List.of(
                     Path.of("src/main/resources/hw9Task2/dir2/img5.jpg")
                 ));
