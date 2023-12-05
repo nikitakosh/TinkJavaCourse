@@ -18,28 +18,29 @@ public class FindDirectory extends RecursiveTask<List<Path>> {
         this.path = path;
         this.countFiles = countFiles;
     }
+
     @Override
     protected List<Path> compute() {
         List<FindDirectory> recursiveTasks =
                 new ArrayList<>();
         List<Path> pathsWithManyFiles = new ArrayList<>();
-        try (Stream<Path> paths = Files.walk(path, 1)){
+        try (Stream<Path> paths = Files.walk(path, 1)) {
             List<Path> listPaths = paths.skip(1).toList();
-            for(Path path : listPaths) {
+            listPaths.forEach(path -> {
                 if (path.toFile().isDirectory()) {
                     FindDirectory recursiveTask =
                             new FindDirectory(path, countFiles);
                     recursiveTask.fork();
                     recursiveTasks.add(recursiveTask);
                 }
-            }
+            });
             if (listPaths.size() > countFiles) {
                 pathsWithManyFiles.add(path);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        for(var findDirectoryRecursiveTask : recursiveTasks) {
+        for (var findDirectoryRecursiveTask : recursiveTasks) {
             pathsWithManyFiles.addAll(findDirectoryRecursiveTask.join());
         }
         return pathsWithManyFiles;

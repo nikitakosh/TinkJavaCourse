@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
+
 public class MazeGraphGenerator {
 
-    private MazeGraphGenerator() {}
+    private MazeGraphGenerator() {
+    }
 
     @NotNull
     public static Cell[][] generateGraph(int height, int width,

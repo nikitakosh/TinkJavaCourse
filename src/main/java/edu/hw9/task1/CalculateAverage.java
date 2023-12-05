@@ -13,6 +13,7 @@ public class CalculateAverage implements Callable<Double> {
 
     @Override
     public Double call() {
-        return Arrays.stream(data).mapToDouble(i -> i).average().orElseThrow(() -> new EmptyDataException("data is empty"));
+        return Arrays.stream(data).mapToDouble(i -> i).average()
+                .orElseThrow(() -> new EmptyDataException("data is empty"));
     }
 }

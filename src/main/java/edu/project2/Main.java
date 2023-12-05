@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+
 public class Main {
 
 
@@ -22,7 +23,7 @@ public class Main {
         EllerMazeGenerator ellerMazeGenerator = new EllerMazeGenerator();
         Maze mazeEller = ellerMazeGenerator.generate(HEIGHT_MAZE_ELLER, WIDTH_MAZE_ELLER);
         Maze mazeBinaryTree = binaryTreeMazeGenerator.generate(HEIGHT_MAZE_BINARY_TREE, WIDTH_MAZE_BINARY_TREE);
-        DFSSolver dfsSolver = new DFSSolver();
+        ParallelDFSSolver dfsSolver = new ParallelDFSSolver();
         BFSSolver bfsSolver = new BFSSolver();
         // find path for mazeEller by DFS
         List<Cell> pathDfsSolverForMazeEller = dfsSolver.solve(
