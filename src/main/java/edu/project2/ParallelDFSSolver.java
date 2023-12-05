@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class DFSSolver implements Solver {
+public class ParallelDFSSolver implements Solver {
 
     @Override
     public List<Cell> solve(Maze maze, Coordinate start, Coordinate end) {

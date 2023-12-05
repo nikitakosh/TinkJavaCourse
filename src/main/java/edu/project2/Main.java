@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Main {
 
+
     public static final int HEIGHT_MAZE_ELLER = 5;
     public static final int WIDTH_MAZE_ELLER = 5;
     public static final int HEIGHT_MAZE_BINARY_TREE = 5;
