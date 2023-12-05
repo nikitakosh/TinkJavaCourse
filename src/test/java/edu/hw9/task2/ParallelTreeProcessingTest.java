@@ -28,7 +28,9 @@ public class ParallelTreeProcessingTest {
                         Path.of("src/main/resources/hw9Task2/dir1"),
                         Path.of("src/main/resources/hw9Task2/dir2")
                 ));
-        Assertions.assertEquals(parallelTreeProcessing.findDirectory(4),
+        directories = parallelTreeProcessing.findDirectory(4);
+        directories.sort(Path::compareTo);
+        Assertions.assertEquals(directories,
                 List.of(
                         Path.of("src/main/resources/hw9Task2/dir2")
                 ));
@@ -46,7 +48,9 @@ public class ParallelTreeProcessingTest {
                         Path.of("src/main/resources/hw9Task2/dir2/file3.txt"),
                         Path.of("src/main/resources/hw9Task2/file1.txt")
                 ));
-        Assertions.assertEquals(parallelTreeProcessing.findFilesWithExtension("png"),
+        files = parallelTreeProcessing.findFilesWithExtension("png");
+        files.sort(Path::compareTo);
+        Assertions.assertEquals(files,
                 List.of(
                         Path.of("src/main/resources/hw9Task2/dir1/img2.png"),
                         Path.of("src/main/resources/hw9Task2/dir1/img3.png"),
@@ -64,7 +68,9 @@ public class ParallelTreeProcessingTest {
                 List.of(
                     Path.of("src/main/resources/hw9Task2/dir2/img5.jpg")
                 ));
-        Assertions.assertEquals(parallelTreeProcessing.findFilesBySize(100000),
+        files = parallelTreeProcessing.findFilesBySize(100000);
+        files.sort(Path::compareTo);
+        Assertions.assertEquals(files,
                 List.of(
                         Path.of("src/main/resources/hw9Task2/dir2/img5.jpg"),
                         Path.of("src/main/resources/hw9Task2/dir2/img6.jpg")
