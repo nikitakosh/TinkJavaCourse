@@ -2,10 +2,9 @@ package edu.hw10.task1.testsClass;
 
 import edu.hw10.task1.annotations.NotNull;
 
-public class ClassWithNotNullAnnotation {
-
-    public ClassWithNotNullAnnotation(@NotNull String string) {
+public record ClassWithNotNullAnnotation(String stringNotNull, String stringNull) {
+    public ClassWithNotNullAnnotation(@NotNull String stringNotNull, String stringNull) {
+        this.stringNotNull = stringNotNull;
+        this.stringNull = stringNull;
     }
-
-
 }

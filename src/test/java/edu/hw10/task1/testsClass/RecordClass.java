@@ -1,5 +1,7 @@
 package edu.hw10.task1.testsClass;
 
-public record RecordClass(String string, Long aLong) {
+import edu.hw10.task1.annotations.NotNull;
+
+public record RecordClass(@NotNull String string, @NotNull Long aLong) {
 
 }

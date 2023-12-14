@@ -2,6 +2,7 @@ package edu.hw10.task1.generators;
 
 import edu.hw10.task1.annotations.Max;
 import edu.hw10.task1.annotations.Min;
+import edu.hw10.task1.annotations.NotNull;
 import java.lang.annotation.Annotation;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -16,6 +17,7 @@ public class StringRandomGenerator implements FieldRandomGenerator<String> {
     public String random(Annotation[] annotations) {
         long max = MAX_LENGTH;
         long min = MIN_LENGTH;
+        boolean isNull = true;
         for (Annotation annotation : annotations) {
             if (annotation.annotationType().equals(Max.class)) {
                 Max maxAnnotation = (Max) annotation;
@@ -25,6 +27,12 @@ public class StringRandomGenerator implements FieldRandomGenerator<String> {
                 Min maxAnnotation = (Min) annotation;
                 min = (long) maxAnnotation.value();
             }
+            if (annotation.annotationType().equals(NotNull.class)) {
+                isNull = false;
+            }
+        }
+        if (isNull) {
+            return null;
         }
         long length = ThreadLocalRandom.current().nextLong(min, max);
         StringBuilder stringBuilder = new StringBuilder();
