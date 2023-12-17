@@ -7,7 +7,7 @@ import java.lang.invoke.MethodType;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
+import java.util.function.Function;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
@@ -23,11 +23,15 @@ import org.openjdk.jmh.runner.options.TimeValue;
 @State(Scope.Thread)
 public class ReflectionBenchmark {
 
+    public static final int WARMUP_TIME = 5;
+    public static final int MEASUREMENT_TIME = 5;
+    public static final String METHOD_NAME = "name";
     private Student student;
     private Method method;
     private MethodHandle methodHandle;
-    private Supplier<String> lambda;
+    private Function<Student, String> lambda;
 
+    @SuppressWarnings("UncommentedMain")
     public static void main(String[] args) throws RunnerException {
         Options options = new OptionsBuilder()
             .include(ReflectionBenchmark.class.getSimpleName())
@@ -38,9 +42,9 @@ public class ReflectionBenchmark {
             .forks(1)
             .warmupForks(1)
             .warmupIterations(1)
-            .warmupTime(TimeValue.seconds(5))
+            .warmupTime(TimeValue.seconds(WARMUP_TIME))
             .measurementIterations(1)
-            .measurementTime(TimeValue.seconds(5))
+            .measurementTime(TimeValue.seconds(MEASUREMENT_TIME))
             .build();
         new Runner(options).run();
     }
@@ -49,17 +53,18 @@ public class ReflectionBenchmark {
     public void setup()
         throws Throwable {
         student = new Student("Nikita", "Kosheev");
-        method = Student.class.getMethod("name");
+        method = Student.class.getMethod(METHOD_NAME);
         methodHandle = MethodHandles.lookup()
-            .findVirtual(Student.class, "name", MethodType.methodType(String.class));
+            .findVirtual(Student.class, METHOD_NAME, MethodType.methodType(String.class));
 
-        lambda = (Supplier<String>) LambdaMetafactory.metafactory(
-            MethodHandles.lookup(), "get",
-            MethodType.methodType(Supplier.class),
-            methodHandle.type(),
+        lambda = (Function<Student, String>) LambdaMetafactory.metafactory(
+            MethodHandles.lookup(),
+            "apply",
+            MethodType.methodType(Function.class),
+            MethodType.methodType(Object.class, Object.class),
             methodHandle,
-            methodHandle.type()
-        ).getTarget().invokeExact(student);
+            MethodType.methodType(String.class, Student.class)
+        ).getTarget().invokeExact();
     }
 
     @Benchmark
@@ -75,14 +80,19 @@ public class ReflectionBenchmark {
     }
 
     @Benchmark
-    public void methodHandles(Blackhole bh) throws Throwable {
-        String name = (String) methodHandle.invokeExact(student);
+    public void methodHandles(Blackhole bh) {
+        String name ;
+        try {
+            name = (String) methodHandle.invokeExact(student);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
         bh.consume(name);
     }
 
     @Benchmark
     public void lambdaMetafactory(Blackhole bh) {
-        String name = lambda.get();
+        String name = lambda.apply(student);
         bh.consume(name);
     }
 
