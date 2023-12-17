@@ -81,7 +81,7 @@ public class ReflectionBenchmark {
 
     @Benchmark
     public void methodHandles(Blackhole bh) {
-        String name ;
+        String name;
         try {
             name = (String) methodHandle.invokeExact(student);
         } catch (Throwable e) {
