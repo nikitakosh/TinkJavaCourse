@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-
 public class BFSSolver implements Solver {
     @Override
     public List<Cell> solve(Maze maze, Coordinate start, Coordinate end) {
