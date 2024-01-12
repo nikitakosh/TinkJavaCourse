@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DFSSolverTest {
+public class ParallelDFSSolverTest {
 
     @Test
     @DisplayName("search path by dfs solver")
@@ -37,7 +37,7 @@ public class DFSSolverTest {
                 new Cell(1, 0, List.of(Cell.Direction.TOP, Cell.Direction.BOTTOM)),
                 new Cell(0, 0, List.of(Cell.Direction.BOTTOM))
         );
-        Assertions.assertEquals(new DFSSolver().solve(maze, new Coordinate(0, 0), new Coordinate(3, 3)), path);
+        Assertions.assertEquals(new ParallelDFSSolver().solve(maze, new Coordinate(0, 0), new Coordinate(3, 3)), path);
     }
 
 }

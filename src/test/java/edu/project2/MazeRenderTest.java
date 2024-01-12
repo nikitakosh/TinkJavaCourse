@@ -59,7 +59,7 @@ public class MazeRenderTest {
         ));
         Cell[][] graph =  MazeGraphGenerator.generateGraph(4, 4, bottomWalls, rightWalls);
         Maze maze = new Maze(4, 4, graph, rightWalls, bottomWalls);
-        List<Cell> path = new DFSSolver().solve(maze, new Coordinate(0, 0), new Coordinate(3, 3));
+        List<Cell> path = new ParallelDFSSolver().solve(maze, new Coordinate(0, 0), new Coordinate(3, 3));
         MazeRender mazeRender = new MazeRender();
         String prettyMaze = """
                 +---+---+---+---+

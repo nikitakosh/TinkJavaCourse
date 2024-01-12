@@ -28,8 +28,8 @@ public class InvalidCoordinatesTest {
         ));
         Cell[][] graph =  MazeGraphGenerator.generateGraph(4, 4, bottomWalls, rightWalls);
         Maze maze = new Maze(4, 4, graph, rightWalls, bottomWalls);
-        Assertions.assertThrows(InvalidCoordinatesException.class, () -> new DFSSolver().solve(maze, new Coordinate(-1, 0), new Coordinate(2, 2)));
-        Assertions.assertThrows(CoordinatesOutOfBoundException.class, () -> new DFSSolver().solve(maze, new Coordinate(5, 5), new Coordinate(2, 2)));
+        Assertions.assertThrows(InvalidCoordinatesException.class, () -> new ParallelDFSSolver().solve(maze, new Coordinate(-1, 0), new Coordinate(2, 2)));
+        Assertions.assertThrows(CoordinatesOutOfBoundException.class, () -> new ParallelDFSSolver().solve(maze, new Coordinate(5, 5), new Coordinate(2, 2)));
     }
 
 }
